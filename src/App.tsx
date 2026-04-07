@@ -175,23 +175,23 @@ export default function App() {
 
   return (
     <div className="min-h-screen pb-20 md:pb-0">
-      {/* Navbar */}
-      <nav className="sticky top-0 z-50 glass border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
-              <Activity className="text-white w-6 h-6" />
+      {/* Navbar (Non-sticky) */}
+      <nav className="relative border-b border-white/5 bg-darker">
+        <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+              <Activity className="text-white w-7 h-7" />
             </div>
             <div>
-              <h1 className="text-xl font-bold bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent leading-none">SIS Pathology</h1>
-              <p className="text-[10px] text-primary font-medium tracking-widest uppercase">Trusted Lab Services</p>
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent leading-none">SIS Pathology</h1>
+              <p className="text-[11px] text-primary font-medium tracking-widest uppercase mt-1">Trusted Lab Services</p>
             </div>
           </div>
 
           <div className="hidden md:flex items-center gap-8">
             <a href="#tests" className="text-sm font-medium hover:text-primary transition-colors">Tests</a>
             <a href="#packages" className="text-sm font-medium hover:text-primary transition-colors">Packages</a>
-            <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">About</a>
+            <a href="#testimonials" className="text-sm font-medium hover:text-primary transition-colors">Reviews</a>
             <div className="h-4 w-px bg-white/10" />
             <a href={`tel:${WHATSAPP_NUMBER}`} className="flex items-center gap-2 text-sm font-bold text-primary">
               <Phone size={16} />
@@ -200,23 +200,30 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-4">
-            <button 
-              onClick={() => setIsCartOpen(true)}
-              className="relative p-2 glass-hover rounded-full"
-            >
-              <ShoppingCart size={22} />
-              {cart.length > 0 && (
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-secondary text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-darker">
-                  {cart.length}
-                </span>
-              )}
-            </button>
-            <button className="md:hidden p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            {/* Mobile Menu Button only (Cart moved to fixed position) */}
+            <button className="md:hidden p-2 glass rounded-lg" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
               <Menu size={24} />
             </button>
           </div>
         </div>
       </nav>
+
+      {/* Fixed Sticky Cart Button */}
+      <div className="fixed top-4 right-4 z-[60] md:top-6 md:right-8">
+        <motion.button 
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setIsCartOpen(true)}
+          className="relative p-4 bg-primary/20 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl shadow-primary/10 hover:bg-primary/30 transition-all group"
+        >
+          <ShoppingCart size={24} className="text-white group-hover:text-primary transition-colors" />
+          {cart.length > 0 && (
+            <span className="absolute -top-2 -right-2 w-6 h-6 bg-secondary text-white text-[11px] font-bold rounded-full flex items-center justify-center border-2 border-darker shadow-lg">
+              {cart.length}
+            </span>
+          )}
+        </motion.button>
+      </div>
 
       {/* Hero Section */}
       <section className="relative pt-12 pb-24 px-4 overflow-hidden">
