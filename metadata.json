@@ -1,0 +1,5 @@
+{
+  "name": "SIS Pathology - Premium Lab Booking",
+  "description": "Trusted pathology lab tests at home with fast reports and affordable packages. Book blood tests, wellness packages, and home sample collection online.",
+  "requestFramePermissions": ["geolocation"]
+}
