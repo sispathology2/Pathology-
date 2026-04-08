@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #008B9C; /* Teal from Logo */
-  --color-secondary: #002137; /* Navy from Logo */
-  --color-accent: #48C9B0; /* Light Teal */
-  --color-dark: #001a2a;
-  --color-darker: #000d15;
+  --color-primary: #0F4C81; /* Professional Medical Blue */
+  --color-secondary: #10B981; /* Emerald Health Green */
+  --color-accent: #3B82F6; /* Action Blue */
+  --color-dark: #0F172A;
+  --color-darker: #020617;
 }
 
 @layer base {

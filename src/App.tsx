@@ -28,7 +28,8 @@ import {
   Droplets,
   Stethoscope,
   FileText,
-  Microscope
+  Microscope,
+  Zap
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { TESTS, WELLNESS_PACKAGE } from './constants';
@@ -179,19 +180,30 @@ export default function App() {
     <div className="min-h-screen pb-20 md:pb-0">
       {/* Navbar (Non-sticky) */}
       <nav className="relative border-b border-white/5 bg-darker">
-        <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="relative w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-full opacity-20">
-                <div className="absolute top-1 left-2 w-2 h-2 bg-white rounded-full blur-[1px]" />
-                <div className="absolute bottom-2 right-3 w-3 h-3 bg-white rounded-full blur-[1px]" />
-                <div className="absolute top-4 right-1 w-1.5 h-1.5 bg-white rounded-full blur-[1px]" />
+        <div className="max-w-7xl mx-auto px-4 h-24 flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            {/* SIS Brand */}
+            <div className="flex items-center gap-2">
+              <div className="relative w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-lg shadow-primary/20 overflow-hidden">
+                <Microscope className="text-white w-6 h-6 relative z-10" />
               </div>
-              <Microscope className="text-white w-7 h-7 relative z-10" />
+              <div>
+                <h1 className="text-lg font-bold leading-none tracking-tight">SIS</h1>
+                <p className="text-[9px] text-primary font-bold uppercase mt-0.5">Pathology</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent leading-none tracking-tight">SIS</h1>
-              <p className="text-[11px] text-primary font-bold tracking-[0.2em] uppercase mt-1">Pathology</p>
+            
+            <div className="h-8 w-px bg-white/10" />
+            
+            {/* Tenet Brand */}
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center border border-white/10">
+                <Zap className="text-accent w-6 h-6" />
+              </div>
+              <div>
+                <h1 className="text-lg font-bold leading-none tracking-tight">TENET</h1>
+                <p className="text-[9px] text-accent font-bold uppercase mt-0.5">Diagnostics</p>
+              </div>
             </div>
           </div>
 
@@ -245,9 +257,16 @@ export default function App() {
               className="fixed left-0 top-0 h-full w-[80%] max-w-sm bg-dark border-r border-white/10 z-[90] p-8 flex flex-col"
             >
               <div className="flex items-center justify-between mb-12">
-                <div className="flex items-center gap-2">
-                  <Microscope className="text-primary w-8 h-8" />
-                  <span className="text-xl font-bold">SIS Pathology</span>
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2">
+                    <Microscope className="text-primary w-6 h-6" />
+                    <span className="text-lg font-bold">SIS</span>
+                  </div>
+                  <div className="h-6 w-px bg-white/10" />
+                  <div className="flex items-center gap-2">
+                    <Zap className="text-accent w-6 h-6" />
+                    <span className="text-lg font-bold">TENET</span>
+                  </div>
                 </div>
                 <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:bg-white/5 rounded-full">
                   <X size={24} />
@@ -274,14 +293,14 @@ export default function App() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="flex items-center gap-4 text-lg font-medium hover:text-primary transition-colors"
                 >
-                  <Star size={20} className="text-yellow-400" /> Patient Reviews
+                  <Star size={20} className="text-amber-400" /> Patient Reviews
                 </a>
                 <a 
                   href="#how-it-works" 
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="flex items-center gap-4 text-lg font-medium hover:text-primary transition-colors"
                 >
-                  <Clock size={20} className="text-blue-400" /> How it Works
+                  <Clock size={20} className="text-accent" /> How it Works
                 </a>
               </div>
 
@@ -320,11 +339,11 @@ export default function App() {
             transition={{ duration: 0.6 }}
           >
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-6">
-              <Microscope size={14} /> Advanced Diagnostic Center
+              <ShieldCheck size={14} /> SIS & TENET Diagnostic Alliance
             </span>
             <h2 className="text-4xl md:text-7xl font-bold mb-6 tracking-tight">
-              SIS Pathology – <br />
-              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">Precision in Every Report</span>
+              Advanced Diagnostics – <br />
+              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">SIS x TENET Excellence</span>
             </h2>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-10">
               Fast reports, affordable packages, and professional home sample collection. 
@@ -352,7 +371,7 @@ export default function App() {
               </button>
               <button 
                 onClick={() => handleWhatsAppClick()}
-                className="flex items-center justify-center gap-2 text-green-400 font-bold hover:text-green-300 transition-colors"
+                className="flex items-center justify-center gap-2 text-secondary font-bold hover:text-secondary/80 transition-colors"
               >
                 <MessageCircle size={20} /> WhatsApp Booking
               </button>
@@ -367,8 +386,8 @@ export default function App() {
           {[
             { icon: <Clock className="text-primary" />, label: "60 Min Collection", desc: "Fastest at-home service" },
             { icon: <ShieldCheck className="text-secondary" />, label: "Accurate Reports", desc: "NABL standard labs" },
-            { icon: <Droplets className="text-red-400" />, label: "Safe & Hygienic", desc: "Certified phlebotomists" },
-            { icon: <Stethoscope className="text-blue-400" />, label: "Same Day Result", desc: "Digital reports on phone" },
+            { icon: <Droplets className="text-primary" />, label: "Safe & Hygienic", desc: "Certified phlebotomists" },
+            { icon: <Stethoscope className="text-accent" />, label: "Same Day Result", desc: "Digital reports on phone" },
           ].map((feature, i) => (
             <motion.div 
               key={i}
@@ -416,7 +435,7 @@ export default function App() {
                     <p className="text-slate-500 text-sm line-through">MRP ₹4,000</p>
                     <p className="text-4xl font-bold text-white">₹{WELLNESS_PACKAGE.price}</p>
                   </div>
-                  <div className="bg-green-500/20 text-green-400 px-3 py-1 rounded-lg text-sm font-bold mb-1">
+                  <div className="bg-secondary/20 text-secondary px-3 py-1 rounded-lg text-sm font-bold mb-1">
                     30% OFF
                   </div>
                 </div>
@@ -442,11 +461,11 @@ export default function App() {
                 </div>
                 <div className="space-y-4 pt-8">
                   <div className="glass p-6 rounded-2xl">
-                    <h4 className="font-bold text-blue-400 mb-2">Diabetes</h4>
+                    <h4 className="font-bold text-accent mb-2">Diabetes</h4>
                     <p className="text-xs text-slate-500">HbA1c and FBS included for sugar monitoring.</p>
                   </div>
                   <div className="glass p-6 rounded-2xl">
-                    <h4 className="font-bold text-red-400 mb-2">Thyroid</h4>
+                    <h4 className="font-bold text-rose-400 mb-2">Thyroid</h4>
                     <p className="text-xs text-slate-500">Complete thyroid profile for hormonal health.</p>
                   </div>
                 </div>
@@ -491,7 +510,7 @@ export default function App() {
                       {test.category}
                     </span>
                     {test.fastingRequired && (
-                      <span className="flex items-center gap-1 text-[10px] text-orange-400 font-bold">
+                      <span className="flex items-center gap-1 text-[10px] text-amber-500 font-bold">
                         <Info size={12} /> Fasting Required
                       </span>
                     )}
@@ -505,7 +524,7 @@ export default function App() {
                       <span className="text-2xl font-bold">₹{test.offerPrice}</span>
                       <span className="text-sm text-slate-500 line-through">₹{test.mrp}</span>
                       {discount > 0 && (
-                        <span className="text-xs font-bold text-green-400 bg-green-400/10 px-2 py-0.5 rounded">
+                        <span className="text-xs font-bold text-secondary bg-secondary/10 px-2 py-0.5 rounded">
                           {discount}% OFF
                         </span>
                       )}
@@ -554,10 +573,10 @@ export default function App() {
             {[
               { title: "Same Day Report", desc: "Get your digital reports on the same day for most tests.", icon: <Clock className="text-primary" /> },
               { title: "Accurate Digital Reports", desc: "High-precision testing with easy-to-read digital reports.", icon: <ShieldCheck className="text-secondary" /> },
-              { title: "Home Collection in 60 Mins", desc: "Our phlebotomists reach your doorstep within an hour.", icon: <Truck className="text-blue-400" /> },
-              { title: "Trusted Local Service", desc: "Serving your community with reliability and care.", icon: <Star className="text-yellow-400" /> },
-              { title: "Safe & Hygienic", desc: "Strict adherence to safety protocols and hygiene.", icon: <Droplets className="text-red-400" /> },
-              { title: "Expert Phlebotomists", desc: "Experienced professionals for painless sample collection.", icon: <User className="text-green-400" /> },
+              { title: "Home Collection in 60 Mins", desc: "Our phlebotomists reach your doorstep within an hour.", icon: <Truck className="text-accent" /> },
+              { title: "Trusted Local Service", desc: "Serving your community with reliability and care.", icon: <Star className="text-amber-400" /> },
+              { title: "Safe & Hygienic", desc: "Strict adherence to safety protocols and hygiene.", icon: <Droplets className="text-primary" /> },
+              { title: "Expert Phlebotomists", desc: "Experienced professionals for painless sample collection.", icon: <User className="text-secondary" /> },
             ].map((item, i) => (
               <div key={i} className="glass p-8 rounded-3xl border-white/5">
                 <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center mb-6">
@@ -583,8 +602,8 @@ export default function App() {
             {[
               { step: "01", title: "Select Test", desc: "Choose from our wide range of individual tests or health packages.", icon: <ShoppingCart className="text-primary" /> },
               { step: "02", title: "Book Slot", desc: "Pick a convenient date and time for home sample collection.", icon: <Calendar className="text-secondary" /> },
-              { step: "03", title: "Sample Collection", desc: "Our expert phlebotomist visits your home for a painless collection.", icon: <Droplets className="text-red-400" /> },
-              { step: "04", title: "Get Reports", desc: "Receive accurate digital reports on your WhatsApp/Email within 24 hours.", icon: <FileText className="text-green-400" /> },
+              { step: "03", title: "Sample Collection", desc: "Our expert phlebotomist visits your home for a painless collection.", icon: <Droplets className="text-primary" /> },
+              { step: "04", title: "Get Reports", desc: "Receive accurate digital reports on your WhatsApp/Email within 24 hours.", icon: <FileText className="text-secondary" /> },
             ].map((item, i) => (
               <div key={i} className="relative group">
                 <div className="glass p-8 rounded-[32px] border-white/5 h-full hover:border-primary/30 transition-all">
@@ -683,7 +702,7 @@ export default function App() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl md:text-5xl font-bold mb-4">What Our Patients Say</h2>
-              <div className="flex items-center justify-center gap-1 text-yellow-400 mb-4">
+              <div className="flex items-center justify-center gap-1 text-amber-400 mb-4">
                 {[...Array(5)].map((_, i) => <Star key={i} size={24} fill="currentColor" />)}
               </div>
               <p className="text-slate-400 max-w-2xl mx-auto">
@@ -746,7 +765,7 @@ export default function App() {
                 transition={{ delay: i * 0.1 }}
                 className="glass p-8 rounded-[32px] border-white/5 relative group hover:border-primary/30 transition-all"
               >
-                <div className="flex items-center gap-1 text-yellow-400 mb-4">
+                <div className="flex items-center gap-1 text-amber-400 mb-4">
                   {[...Array(review.rating)].map((_, j) => <Star key={j} size={14} fill="currentColor" />)}
                 </div>
                 
@@ -760,12 +779,12 @@ export default function App() {
                     <div>
                       <h4 className="text-sm font-bold flex items-center gap-1">
                         {review.name}
-                        <CheckCircle2 size={12} className="text-blue-400" />
+                        <CheckCircle2 size={12} className="text-accent" />
                       </h4>
                       <p className="text-[10px] text-slate-500">{review.location} • {review.date}</p>
                     </div>
                   </div>
-                  <div className="px-2 py-1 rounded bg-green-500/10 text-green-400 text-[10px] font-bold uppercase tracking-wider">
+                  <div className="px-2 py-1 rounded bg-secondary/10 text-secondary text-[10px] font-bold uppercase tracking-wider">
                     Verified
                   </div>
                 </div>
@@ -788,13 +807,20 @@ export default function App() {
       <footer className="py-20 px-4 border-t border-white/5">
         <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
           <div className="col-span-2">
-            <div className="flex items-center gap-2 mb-6">
-              <Microscope className="text-primary w-8 h-8" />
-              <h2 className="text-2xl font-bold">SIS Pathology</h2>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="flex items-center gap-2">
+                <Microscope className="text-primary w-6 h-6" />
+                <span className="text-xl font-bold">SIS</span>
+              </div>
+              <div className="h-8 w-px bg-white/10" />
+              <div className="flex items-center gap-2">
+                <Zap className="text-accent w-6 h-6" />
+                <span className="text-xl font-bold">TENET</span>
+              </div>
             </div>
             <p className="text-slate-500 max-w-md mb-8">
-              Premium pathology services at your doorstep. We combine advanced technology with 
-              compassionate care to provide accurate and timely diagnostic results.
+              Premium pathology services powered by the combined expertise of SIS and TENET. 
+              We leverage advanced technology to provide accurate and timely results.
             </p>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-primary transition-all"><MessageCircle size={20} /></a>
@@ -916,7 +942,7 @@ export default function App() {
                       <span>Subtotal</span>
                       <span>₹{cartTotal}</span>
                     </div>
-                    <div className="flex justify-between text-sm text-green-400">
+                    <div className="flex justify-between text-sm text-secondary">
                       <span>Total Savings</span>
                       <span>-₹{cartSavings}</span>
                     </div>
@@ -942,7 +968,7 @@ export default function App() {
                     </button>
                   </div>
                   {isCouponApplied && (
-                    <p className="text-[10px] text-green-400 font-bold mb-4 flex items-center gap-1">
+                    <p className="text-[10px] text-secondary font-bold mb-4 flex items-center gap-1">
                       <CheckCircle2 size={12} /> Coupon FIRST5 applied! 5% extra discount.
                     </p>
                   )}
@@ -1129,7 +1155,7 @@ export default function App() {
                       />
                       <div className={cn(
                         "w-6 h-6 rounded-md border-2 transition-all flex items-center justify-center",
-                        bookingDetails.fasting ? "bg-orange-500 border-orange-500" : "border-white/20"
+                        bookingDetails.fasting ? "bg-primary border-primary" : "border-white/20"
                       )}>
                         {bookingDetails.fasting && <CheckCircle2 size={14} className="text-white" />}
                       </div>
