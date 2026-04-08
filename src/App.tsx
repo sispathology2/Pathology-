@@ -26,7 +26,8 @@ import {
   User,
   Activity,
   Droplets,
-  Stethoscope
+  Stethoscope,
+  FileText
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { TESTS, WELLNESS_PACKAGE } from './constants';
@@ -218,6 +219,88 @@ export default function App() {
           </div>
         </div>
       </nav>
+
+      {/* Mobile Menu Drawer */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="fixed inset-0 bg-darker/90 backdrop-blur-md z-[80]"
+            />
+            <motion.div 
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed left-0 top-0 h-full w-[80%] max-w-sm bg-dark border-r border-white/10 z-[90] p-8 flex flex-col"
+            >
+              <div className="flex items-center justify-between mb-12">
+                <div className="flex items-center gap-2">
+                  <Activity className="text-primary w-8 h-8" />
+                  <span className="text-xl font-bold">SIS Pathology</span>
+                </div>
+                <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:bg-white/5 rounded-full">
+                  <X size={24} />
+                </button>
+              </div>
+
+              <div className="space-y-6">
+                <a 
+                  href="#tests" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center gap-4 text-lg font-medium hover:text-primary transition-colors"
+                >
+                  <Stethoscope size={20} className="text-primary" /> All Tests
+                </a>
+                <a 
+                  href="#packages" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center gap-4 text-lg font-medium hover:text-primary transition-colors"
+                >
+                  <ShieldCheck size={20} className="text-secondary" /> Health Packages
+                </a>
+                <a 
+                  href="#testimonials" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center gap-4 text-lg font-medium hover:text-primary transition-colors"
+                >
+                  <Star size={20} className="text-yellow-400" /> Patient Reviews
+                </a>
+                <a 
+                  href="#how-it-works" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center gap-4 text-lg font-medium hover:text-primary transition-colors"
+                >
+                  <Clock size={20} className="text-blue-400" /> How it Works
+                </a>
+              </div>
+
+              <div className="mt-auto pt-8 border-t border-white/5">
+                <p className="text-xs text-slate-500 mb-4 uppercase font-bold tracking-wider">Contact Support</p>
+                <a 
+                  href={`tel:${WHATSAPP_NUMBER}`}
+                  className="flex items-center gap-3 text-primary font-bold mb-4"
+                >
+                  <Phone size={18} /> +91 {WHATSAPP_NUMBER}
+                </a>
+                <button 
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    handleWhatsAppClick();
+                  }}
+                  className="btn-primary w-full flex items-center justify-center gap-2"
+                >
+                  <MessageCircle size={18} /> WhatsApp Booking
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Hero Section */}
       <section className="relative pt-12 pb-24 px-4 overflow-hidden">
@@ -477,6 +560,105 @@ export default function App() {
                 <p className="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section id="how-it-works" className="py-24 px-4 bg-darker/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">How It Works</h2>
+            <p className="text-slate-400">Simple 4-step process for your health checkup</p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              { step: "01", title: "Select Test", desc: "Choose from our wide range of individual tests or health packages.", icon: <ShoppingCart className="text-primary" /> },
+              { step: "02", title: "Book Slot", desc: "Pick a convenient date and time for home sample collection.", icon: <Calendar className="text-secondary" /> },
+              { step: "03", title: "Sample Collection", desc: "Our expert phlebotomist visits your home for a painless collection.", icon: <Droplets className="text-red-400" /> },
+              { step: "04", title: "Get Reports", desc: "Receive accurate digital reports on your WhatsApp/Email within 24 hours.", icon: <FileText className="text-green-400" /> },
+            ].map((item, i) => (
+              <div key={i} className="relative group">
+                <div className="glass p-8 rounded-[32px] border-white/5 h-full hover:border-primary/30 transition-all">
+                  <div className="text-4xl font-black text-white/5 absolute top-6 right-8 group-hover:text-primary/10 transition-colors">
+                    {item.step}
+                  </div>
+                  <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-6">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+                  <p className="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
+                </div>
+                {i < 3 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-4 -translate-y-1/2 z-10">
+                    <ArrowRight className="text-white/10" size={24} />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Detailed Service Info */}
+      <section className="py-24 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="glass p-8 md:p-16 rounded-[48px] border-white/5 overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 blur-[120px] rounded-full -z-10" />
+            
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">
+                  Advanced Diagnostics <br />
+                  <span className="text-primary">Right At Your Doorstep</span>
+                </h2>
+                <div className="space-y-6">
+                  <div className="flex gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+                      <ShieldCheck className="text-primary" size={20} />
+                    </div>
+                    <div>
+                      <h4 className="font-bold mb-1">NABL Standard Labs</h4>
+                      <p className="text-sm text-slate-500">All samples are processed in state-of-the-art labs following international quality standards.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center shrink-0">
+                      <User className="text-secondary" size={20} />
+                    </div>
+                    <div>
+                      <h4 className="font-bold mb-1">Certified Professionals</h4>
+                      <p className="text-sm text-slate-500">Our phlebotomists are highly trained and experienced in pediatric and geriatric sample collection.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center shrink-0">
+                      <MessageCircle className="text-green-500" size={20} />
+                    </div>
+                    <div>
+                      <h4 className="font-bold mb-1">Smart Digital Reports</h4>
+                      <p className="text-sm text-slate-500">Receive easy-to-understand reports with historical trends and health recommendations.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="relative">
+                <div className="aspect-square rounded-[32px] overflow-hidden">
+                  <img 
+                    src="https://picsum.photos/seed/medical-lab/800/800" 
+                    alt="SIS Pathology Lab" 
+                    className="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-700"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div className="absolute -bottom-6 -left-6 glass p-6 rounded-2xl border-white/10 max-w-[240px]">
+                  <p className="text-xs text-slate-400 mb-2">Trusted by</p>
+                  <p className="text-2xl font-bold text-white">50,000+</p>
+                  <p className="text-xs text-primary font-bold">Satisfied Patients</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
