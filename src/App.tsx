@@ -27,7 +27,8 @@ import {
   Activity,
   Droplets,
   Stethoscope,
-  FileText
+  FileText,
+  Microscope
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { TESTS, WELLNESS_PACKAGE } from './constants';
@@ -180,12 +181,17 @@ export default function App() {
       <nav className="relative border-b border-white/5 bg-darker">
         <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
-              <Activity className="text-white w-7 h-7" />
+            <div className="relative w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-full opacity-20">
+                <div className="absolute top-1 left-2 w-2 h-2 bg-white rounded-full blur-[1px]" />
+                <div className="absolute bottom-2 right-3 w-3 h-3 bg-white rounded-full blur-[1px]" />
+                <div className="absolute top-4 right-1 w-1.5 h-1.5 bg-white rounded-full blur-[1px]" />
+              </div>
+              <Microscope className="text-white w-7 h-7 relative z-10" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent leading-none">SIS Pathology</h1>
-              <p className="text-[11px] text-primary font-medium tracking-widest uppercase mt-1">Trusted Lab Services</p>
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent leading-none tracking-tight">SIS</h1>
+              <p className="text-[11px] text-primary font-bold tracking-[0.2em] uppercase mt-1">Pathology</p>
             </div>
           </div>
 
@@ -240,7 +246,7 @@ export default function App() {
             >
               <div className="flex items-center justify-between mb-12">
                 <div className="flex items-center gap-2">
-                  <Activity className="text-primary w-8 h-8" />
+                  <Microscope className="text-primary w-8 h-8" />
                   <span className="text-xl font-bold">SIS Pathology</span>
                 </div>
                 <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:bg-white/5 rounded-full">
@@ -261,7 +267,7 @@ export default function App() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="flex items-center gap-4 text-lg font-medium hover:text-primary transition-colors"
                 >
-                  <ShieldCheck size={20} className="text-secondary" /> Health Packages
+                  <ShieldCheck size={20} className="text-accent" /> Health Packages
                 </a>
                 <a 
                   href="#testimonials" 
@@ -304,7 +310,8 @@ export default function App() {
 
       {/* Hero Section */}
       <section className="relative pt-12 pb-24 px-4 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 bg-primary/20 blur-[120px] rounded-full -z-10" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 bg-primary/10 blur-[120px] rounded-full -z-10" />
+        <div className="absolute top-1/4 -right-20 w-64 h-64 bg-accent/5 blur-[100px] rounded-full -z-10" />
         
         <div className="max-w-7xl mx-auto text-center">
           <motion.div
@@ -313,11 +320,11 @@ export default function App() {
             transition={{ duration: 0.6 }}
           >
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-6">
-              <Truck size={14} /> Free Home Sample Collection
+              <Microscope size={14} /> Advanced Diagnostic Center
             </span>
             <h2 className="text-4xl md:text-7xl font-bold mb-6 tracking-tight">
-              SIS Pathology Service – <br />
-              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Trusted Lab Tests at Home</span>
+              SIS Pathology – <br />
+              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">Precision in Every Report</span>
             </h2>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-10">
               Fast reports, affordable packages, and professional home sample collection. 
@@ -389,7 +396,7 @@ export default function App() {
             
             <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <span className="px-4 py-1 rounded-full bg-secondary/20 text-secondary text-xs font-bold uppercase mb-4 inline-block">
+                <span className="px-4 py-1 rounded-full bg-accent/20 text-accent text-xs font-bold uppercase mb-4 inline-block">
                   Best Value Package
                 </span>
                 <h2 className="text-3xl md:text-5xl font-bold mb-6">{WELLNESS_PACKAGE.name}</h2>
@@ -429,7 +436,7 @@ export default function App() {
                     <p className="text-xs text-slate-500">Comprehensive screening of all vital organs.</p>
                   </div>
                   <div className="glass p-6 rounded-2xl">
-                    <h4 className="font-bold text-secondary mb-2">Vitamins</h4>
+                    <h4 className="font-bold text-accent mb-2">Vitamins</h4>
                     <p className="text-xs text-slate-500">Includes B12 and Vitamin D levels.</p>
                   </div>
                 </div>
@@ -624,8 +631,8 @@ export default function App() {
                     </div>
                   </div>
                   <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center shrink-0">
-                      <User className="text-secondary" size={20} />
+                    <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
+                      <User className="text-accent" size={20} />
                     </div>
                     <div>
                       <h4 className="font-bold mb-1">Certified Professionals</h4>
@@ -665,7 +672,7 @@ export default function App() {
 
       {/* Reviews / Testimonials */}
       <section id="testimonials" className="py-24 px-4 bg-dark relative overflow-hidden">
-        <div className="absolute top-1/2 left-0 w-64 h-64 bg-secondary/5 blur-[100px] rounded-full -z-10" />
+        <div className="absolute top-1/2 left-0 w-64 h-64 bg-accent/5 blur-[100px] rounded-full -z-10" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 blur-[120px] rounded-full -z-10" />
         
         <div className="max-w-7xl mx-auto">
@@ -782,7 +789,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
           <div className="col-span-2">
             <div className="flex items-center gap-2 mb-6">
-              <Activity className="text-primary w-8 h-8" />
+              <Microscope className="text-primary w-8 h-8" />
               <h2 className="text-2xl font-bold">SIS Pathology</h2>
             </div>
             <p className="text-slate-500 max-w-md mb-8">

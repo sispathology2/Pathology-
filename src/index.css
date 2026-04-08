@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #1e40af; /* Royal Blue */
-  --color-secondary: #7c3aed; /* Purple */
-  --color-accent: #3b82f6;
-  --color-dark: #0f172a;
-  --color-darker: #020617;
+  --color-primary: #008B9C; /* Teal from Logo */
+  --color-secondary: #002137; /* Navy from Logo */
+  --color-accent: #48C9B0; /* Light Teal */
+  --color-dark: #001a2a;
+  --color-darker: #000d15;
 }
 
 @layer base {
@@ -24,7 +24,7 @@
   }
 
   .btn-primary {
-    @apply bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-xl font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/40 active:scale-95 transition-all;
+    @apply bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-xl font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/40 active:scale-95 transition-all;
   }
 
   .btn-outline {
