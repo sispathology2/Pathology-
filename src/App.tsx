@@ -200,30 +200,24 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-4">
-            {/* Mobile Menu Button only (Cart moved to fixed position) */}
+            <button 
+              onClick={() => setIsCartOpen(true)}
+              className="relative p-2 glass-hover rounded-full"
+            >
+              <ShoppingCart size={22} />
+              {cart.length > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-secondary text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-darker">
+                  {cart.length}
+                </span>
+              )}
+            </button>
+            {/* Mobile Menu Button */}
             <button className="md:hidden p-2 glass rounded-lg" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
               <Menu size={24} />
             </button>
           </div>
         </div>
       </nav>
-
-      {/* Fixed Sticky Cart Button */}
-      <div className="fixed top-4 right-4 z-[60] md:top-6 md:right-8">
-        <motion.button 
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => setIsCartOpen(true)}
-          className="relative p-4 bg-primary/20 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl shadow-primary/10 hover:bg-primary/30 transition-all group"
-        >
-          <ShoppingCart size={24} className="text-white group-hover:text-primary transition-colors" />
-          {cart.length > 0 && (
-            <span className="absolute -top-2 -right-2 w-6 h-6 bg-secondary text-white text-[11px] font-bold rounded-full flex items-center justify-center border-2 border-darker shadow-lg">
-              {cart.length}
-            </span>
-          )}
-        </motion.button>
-      </div>
 
       {/* Hero Section */}
       <section className="relative pt-12 pb-24 px-4 overflow-hidden">
@@ -994,25 +988,6 @@ export default function App() {
         <MessageCircle size={28} />
       </motion.button>
 
-      {/* Sticky Mobile Bottom Bar */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 glass border-t border-white/10 p-4 z-50 flex items-center justify-between gap-4">
-        <div className="flex flex-col">
-          <span className="text-[10px] text-slate-400 uppercase font-bold">Total Amount</span>
-          <span className="text-xl font-bold">₹{cartTotal}</span>
-        </div>
-        <button 
-          onClick={() => {
-            if (cart.length > 0) setIsBookingModalOpen(true);
-            else {
-              const el = document.getElementById('tests');
-              el?.scrollIntoView({ behavior: 'smooth' });
-            }
-          }}
-          className="btn-primary flex-1 py-3 flex items-center justify-center gap-2"
-        >
-          {cart.length > 0 ? 'Book Now' : 'Select Tests'} <ChevronRight size={18} />
-        </button>
-      </div>
     </div>
   );
 }
